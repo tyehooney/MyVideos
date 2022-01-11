@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:layoutDuringTransition="honorRequest"
+        motion:duration="300">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/iv_btn_close"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/iv_btn_play_pause"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tv_video_title_collapsed"
+               motion:framePosition="90"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tv_video_title"
+               motion:framePosition="20"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/tv_video_date"
+               motion:framePosition="10"
+               android:alpha="0" />
+           <KeyPosition
+               motion:motionTarget="@+id/arfl_video"
+               motion:framePosition="70"
+               motion:keyPositionType="deltaRelative"
+               motion:percentX="0"
+               motion:percentY="0.7"
+               motion:curveFit="linear"
+               motion:percentWidth="0"/>
+       </KeyFrameSet>
+        <OnSwipe
+            motion:touchAnchorId="@+id/cl_video"
+            motion:dragDirection="dragDown"
+            motion:touchAnchorSide="top" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/cl_video"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="0dp"
+            motion:layout_constraintVertical_bias="1.0" />
+        <Constraint
+            android:id="@+id/arfl_video"
+            android:layout_width="75dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/cl_video"
+            motion:layout_constraintTop_toTopOf="@+id/cl_video"
+            motion:layout_constraintStart_toStartOf="@+id/cl_video" />
+        <Constraint
+            android:id="@+id/iv_btn_close"
+            motion:layout_constraintEnd_toEndOf="@id/cl_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/cl_video"
+            android:layout_marginEnd="12dp"
+            android:alpha="1"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintTop_toTopOf="@+id/cl_video" />
+        <Constraint
+            android:id="@+id/iv_btn_play_pause"
+            motion:layout_constraintEnd_toStartOf="@id/iv_btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/cl_video"
+            android:layout_marginEnd="12dp"
+            android:alpha="1"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintTop_toTopOf="@+id/cl_video" />
+        <Constraint
+            android:id="@+id/tv_video_title"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/cl_video"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp"
+            android:visibility="gone" />
+        <Constraint
+            android:id="@+id/tv_video_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            motion:layout_constraintTop_toBottomOf="@id/tv_video_title"
+            motion:layout_constraintStart_toStartOf="@id/tv_video_title"
+            android:layout_marginTop="4dp"
+            android:alpha="0"/>
+        <Constraint
+            android:id="@+id/tv_video_title_collapsed"
+            motion:layout_constraintEnd_toStartOf="@id/iv_btn_play_pause"
+            motion:layout_constraintStart_toEndOf="@id/arfl_video"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/cl_video"
+            android:alpha="1"
+            motion:layout_constraintTop_toTopOf="@+id/cl_video"
+            android:layout_marginTop="4dp" />
+    </ConstraintSet>
+</MotionScene>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.tyehooney.myvideos.common.util.TimeUtilsKt"/>
+        <variable
+            name="viewModel"
+            type="com.tyehooney.myvideos.domain.model.Video" />
+        <variable
+            name="currentTime"
+            type="Long" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+            android:id="@+id/arfl_video_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            app:resize_mode="fixed_width"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_video_item_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:scaleType="fitCenter"/>
+        </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+
+        <TextView
+            android:id="@+id/tv_video_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginHorizontal="12dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="@{viewModel.title}"
+            tool:text="Title"
+            app:layout_constraintTop_toBottomOf="@id/arfl_video_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_video_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="32dp"
+            android:text="@{TimeUtilsKt.setCreatedAtText(currentTime, viewModel.createdAt)}"
+            tool:text="20xx/xx/xx"
+            app:layout_constraintTop_toBottomOf="@id/tv_video_item_title"
+            app:layout_constraintStart_toStartOf="@id/tv_video_item_title"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

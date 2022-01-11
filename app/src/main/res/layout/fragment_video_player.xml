@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.tyehooney.myvideos.presentation.main.video_player.VideoPlayerViewModel" />
+        <variable
+            name="dateFormat"
+            type="java.text.SimpleDateFormat" />
+    </data>
+
+    <com.tyehooney.myvideos.presentation.ui.PlayerScreenMotionLayout
+        android:id="@+id/ml_player_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        app:layoutDescription="@xml/fragment_video_player_xml_constraintlayout_scene"
+        app:layout_collapseMode="pin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_video"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="250dp"
+            android:maxHeight="400dp"
+            android:background="@color/purple_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+            android:id="@+id/arfl_video"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_video"
+            app:layout_constraintStart_toStartOf="@+id/cl_video"
+            app:layout_constraintTop_toTopOf="@+id/cl_video"
+            app:resize_mode="zoom">
+
+            <com.google.android.exoplayer2.ui.StyledPlayerView
+                android:id="@+id/spv_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+
+        <ImageView
+            android:id="@+id/iv_btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:padding="2dp"
+            android:alpha="0"
+            android:contentDescription="close player"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_video"
+            app:layout_constraintEnd_toEndOf="@id/cl_video"
+            app:layout_constraintTop_toTopOf="@+id/cl_video" />
+
+        <ImageView
+            android:id="@+id/iv_btn_play_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:padding="2dp"
+            android:alpha="0"
+            android:contentDescription="play pause video"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_video"
+            app:layout_constraintEnd_toStartOf="@id/iv_btn_close"
+            app:layout_constraintTop_toTopOf="@+id/cl_video" />
+
+        <TextView
+            android:id="@+id/tv_video_title_collapsed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="4dp"
+            android:alpha="0"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.videoPlayerResult.video.title}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_video"
+            app:layout_constraintEnd_toStartOf="@id/iv_btn_play_pause"
+            app:layout_constraintStart_toEndOf="@id/arfl_video"
+            app:layout_constraintTop_toTopOf="@+id/cl_video"
+            tool:text="Title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_video_info"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:focusable="true"
+            app:layout_constraintTop_toBottomOf="@id/cl_video"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_video_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{viewModel.videoPlayerResult.video.title}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@+id/cl_video_info"
+            app:layout_constraintStart_toStartOf="@+id/cl_video_info"
+            app:layout_constraintEnd_toEndOf="@+id/cl_video_info"
+            tool:text="Title" />
+
+        <TextView
+            android:id="@+id/tv_video_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="32dp"
+            android:text="@{dateFormat.format(viewModel.videoPlayerResult.video.createdAt)}"
+            app:layout_constraintStart_toStartOf="@id/tv_video_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_video_title"
+            tool:text="20xx/xx/xx" />
+    </com.tyehooney.myvideos.presentation.ui.PlayerScreenMotionLayout>
+</layout>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MyVideos</string>
+    <string name="error_init_binding">binding이 초기화되지 않았습니다.</string>
+    <string name="need_permission">이 앱을 사용하려면 다음 권한이 필요합니다.</string>
+    <string name="permission_denied">권한 허가를 하지 않으면 앱을 사용할 수 없습니다!\n권한 설정을 하려면 앱 [설정] -> [권한]에서 허용해주세요!</string>
+</resources>
