@@ -18,4 +18,4 @@ https://user-images.githubusercontent.com/48874574/148960227-a4b2fe3b-0ee5-41c4-
 
 ## 주요 학습 내용
 - [ExoPlayer]()
-- [MotionLayout]()
+- [MotionLayout](https://github.com/tyehooney/MyVideos/wiki/MotionLayout)
